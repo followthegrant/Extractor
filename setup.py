@@ -32,9 +32,9 @@ setup(
         ]
     },
     install_requires=[
-        'pandas',
         'pyyaml',
-        'BeautifulSoup4'
+        'BeautifulSoup4',
+        'lxml'
     ],
     zip_safe=False
 )

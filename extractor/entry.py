@@ -11,11 +11,13 @@ COMMANDS = {
             'flag': 'info',
             'help': 'YAML File containing extraction infos'
         }, {
-            'flag': 'index',
-            'help': 'CSV File containing paper infos'
-        }, {
             'flag': 'directory',
             'help': 'Base directory containing downloaded papers'
+        }, {
+            'flag': '--pretty',
+            'help': 'Output JSON format nice indented or 1 record per row',
+            'action': 'store_true',
+            'default': False
         })
     },
     'sync_elasticsearch': {
