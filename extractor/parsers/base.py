@@ -1,5 +1,5 @@
 """
-nature parser for disclosures
+base parser for disclosures, works with already extracted text blocks
 """
 
 

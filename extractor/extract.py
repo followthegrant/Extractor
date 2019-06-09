@@ -100,13 +100,17 @@ def _extract_metadata(files, info, pretty):
                        for el in doc.find_all('meta', {'name': info['authors']['name']})]
 
             # extract disclosures
-            metadata['authors'] = _get_disclosures(doc, authors, info['disclosure_parser'])
+            authors, paper_disclosures = _get_disclosures(doc, authors, info['disclosure_parser'])
+            metadata['authors'] = authors
+            metadata['disclosures'] = paper_disclosures
 
             if pretty:
                 sys.stdout.write(json.dumps(metadata, indent=2))
             else:
                 sys.stdout.write(json.dumps(metadata) + '\n')
             res.append(1)
+        else:
+            res.append(0)
     return res
 
 
@@ -115,6 +119,8 @@ def main(args):
         info = yaml.load(f)
 
     files = get_files(args.directory, lambda x: x.endswith('.html'))
-    # _extract_metadata(files, info, args.pretty)
+    # res = _extract_metadata(files, info, args.pretty)
     res = parallelize(_extract_metadata, files, info, args.pretty)
-    logger.log(logging.INFO, 'Extracted metadata from %s files' % len(list(res)))
+    count = sum(res)
+    skipped = len(res) - count
+    logger.log(logging.INFO, 'Extracted metadata from %s files, %s skipped.' % (count, skipped))

@@ -6,7 +6,7 @@ from importlib import import_module
 
 
 COMMANDS = {
-    'metadata': {
+    'extract': {
         'args': ({
             'flag': 'info',
             'help': 'YAML File containing extraction infos'
@@ -20,47 +20,15 @@ COMMANDS = {
             'default': False
         })
     },
-    'sync_elasticsearch': {
+    'get_disclosures': {
         'args': ({
-            'flag': 'source',
-            'help': 'JSON tree file our directory containing trees'
+            'flag': '--file',
+            'help': 'input file with 1 json record per line'
         }, {
-            'flag': '--host',
-            'help': 'Elasticsearch host:port',
-            'default': 'localhost:9200'
-        }, {
-            'flag': '--index',
-            'help': 'Name of elasticsearch index',
-            'default': 'genesapi'
-        }, {
-            'flag': '--overwrite',
-            'help': 'Overwrite existing index',
-            'action': 'store_true'
-        }, {
-            'flag': '--quiet',
-            'help': 'Don\'t raise exceptions from elasticsearch client',
+            'flag': '--pretty',
+            'help': 'Output JSON format nice indented or 1 record per row',
             'action': 'store_true',
             'default': False
-        }, {
-            'flag': '--jobs',
-            'help': 'Thread count for `parallel_bulk`',
-            'type': int,
-            'default': 8
-        }, {
-            'flag': '--queue-size',
-            'help': 'Queue size for `parallel_bulk`',
-            'type': int,
-            'default': 8
-        }, {
-            'flag': '--chunk-size',
-            'help': 'Number of documents per chunk',
-            'type': int,
-            'default': 100
-        }, {
-            'flag': '--chunk-bytes',
-            'help': 'Maximum bytes per chunk',
-            'type': int,
-            'default': 512000000
         })
     }
 }
